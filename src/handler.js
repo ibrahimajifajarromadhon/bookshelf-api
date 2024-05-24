@@ -77,10 +77,16 @@ const getAllBooksHandler = (request, h) => {
         filteredBooks = filteredBooks.filter((book) => book.finished === finishedBool);
     }
 
+    const booksSimplified = filteredBooks.map(book => ({
+        id: book.id,
+        name: book.name,
+        publisher: book.publisher
+    }));
+
     return h.response({
         status: 'success',
         data: {
-            books: filteredBooks,
+            books: booksSimplified,
         },
     });
 };
